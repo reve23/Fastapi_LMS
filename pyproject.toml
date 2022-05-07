@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "lms_app"
+version = "0.1.0"
+description = ""
+authors = ["reve23 <reve172020@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.75.2"
+uvicorn = "^0.17.6"
+pydantic = "^1.9.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
