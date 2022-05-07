@@ -2,6 +2,8 @@ from fastapi import FastAPI,Path,Query
 from pydantic import BaseModel
 from typing import Optional
 
+from api import users,courses,sections
+
 app = FastAPI(
     title="Learning management system",
     description= "LMS for managing students and courses",
@@ -15,22 +17,7 @@ app = FastAPI(
     },
 )
 
-class User(BaseModel):
-    email : str
-    is_active : bool
-    bio: Optional[str]
 
-users = []
-
-@app.get('/users')
-async def get_users():
-    return users
-
-@app.post('/users')
-async def create_user(user:User):
-    users.append(user)
-    return {"Message":"Successfully created user"}
-
-@app.get('/users/{id}')
-async def get_user(id:int=Path(...,description="Id of the user you want to Retrieve",gt=2),q:str=Query(None,max_length=5)):
-    return {"user":users[id],"query":q}
+app.include_router(users.router)
+app.include_router(courses.router)
+app.include_router(sections.router)
